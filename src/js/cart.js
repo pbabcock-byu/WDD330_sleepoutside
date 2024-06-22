@@ -1,5 +1,13 @@
 import { getLocalStorage } from "./utils.mjs";
 
+// PB: Superscript for the cart counter in the header
+const cartTotalItems = Object.keys(localStorage);
+const cartItemCount = cartTotalItems.length;
+const cartItemCountElement = document.getElementById("cartItemCount");
+if (cartItemCountElement != null) {
+  cartItemCountElement.textContent = cartItemCount;
+}
+
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   //const htmlItems = cartItems.map((item) => cartItemTemplate(item));
