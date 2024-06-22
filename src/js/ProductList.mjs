@@ -27,10 +27,15 @@ export default class ProductListing {
         const filteredProducts = this.filterProducts(products, ["880RR", "985RF", "344YJ", "985PR"]);
         this.renderProductList(filteredProducts);
     }
+    filterProducts(products, ids) {
+        return products.filter(product => ids.includes(product.Id));
+      }
+    
     renderProductList(products) {
       renderListWithTemplate(productCardTemplate, this.listElement, products);
     }
     // Stretch Activity Step 2
+    
     showFourTents(list) { 
         return list.filter(function(product){ return product.Id != "989CG" && product.Id != "880RT"});
     } 
