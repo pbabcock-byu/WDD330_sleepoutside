@@ -18,6 +18,19 @@ function productDetailsTemplate(product) {
     </div></section>`;
 }
 
+// PB: update Superscript when items added to cart
+export function updateCartItemCount() {
+  const cartItems = Object.keys(localStorage);
+  const cartItemCount = cartItems.length;
+  const cartItemCountElement = document.getElementById("cartItemCount");
+  if (cartItemCountElement != null) {
+    cartItemCountElement.textContent = cartItemCount;
+    //console.log("cart element exists");
+  }
+  //console.log(cartItemCount);
+  //console.log(cartItemCountElement)
+}
+
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -36,10 +49,15 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
+    // PB: Call function to update cart  item count when add item is clicked
+    updateCartItemCount();
   }
   addToCart() {
     setLocalStorage("so-cart", this.product);
+    // PB: Call function when item is added to cart
+    updateCartItemCount();
   }
+  
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
@@ -48,3 +66,5 @@ export default class ProductDetails {
     );
   }
 }
+// PB: Call function so it runs on page load
+updateCartItemCount();

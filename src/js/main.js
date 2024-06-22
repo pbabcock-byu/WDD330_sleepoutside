@@ -1,11 +1,18 @@
+// PB: Superscript for the cart counter in the header
+const cartItems = Object.keys(localStorage);
+const cartItemCount = cartItems.length;
+const cartItemCountElement = document.getElementById("cartItemCount");
+if (cartItemCountElement != null) {
+  cartItemCountElement.textContent = cartItemCount;
+}
+
 import ProductData from "./ProductData.mjs";
-import ProductListing from "./ProductList.mjs";
+const dataSource = new ProductData("tents");
+
+import ProductList from "./ProductList.mjs";
 
 
-const productDataInstance = new ProductData("tents")
+const element = document.querySelector(".product-list");
+const listing = new ProductList("Tents", dataSource, element);
 
-const productListElement = document.querySelector(".product-list");
-
-const productListing = new ProductListing("tents", productDataInstance, productListElement);
-productListing.init();
-
+listing.init();

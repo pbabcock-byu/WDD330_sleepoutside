@@ -1,4 +1,4 @@
-
+// ProductList.mjs
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
@@ -14,30 +14,26 @@ function productCardTemplate(product) {
 }
 
 export default class ProductListing {
-  constructor(category, dataSource, listElement) {
-    this.category = category;
-    this.dataSource = dataSource;
-    this.listElement = listElement;
+    constructor(category, dataSource, listElement) {
+      // We passed in this information to make our class as reusable as possible.
+      // Being able to define these things when we use the class will make it very flexible
+      this.category = category;
+      this.dataSource = dataSource;
+      this.listElement = listElement;
+    }
+
+    async init() {
+        const products = await this.dataSource.getData();
+        const filteredProducts = this.filterProducts(products, ["880RR", "985RF", "344YJ", "985PR"]);
+        this.renderProductList(filteredProducts);
+    }
+    renderProductList(products) {
+      renderListWithTemplate(productCardTemplate, this.listElement, products);
+    }
+    // Stretch Activity Step 2
+    showFourTents(list) { 
+        return list.filter(function(product){ return product.Id != "989CG" && product.Id != "880RT"});
+    } 
+
   }
 
-  async init() {
-    
-      const products = await this.dataSource.getData();
-      const filteredProducts = this.filterProducts(products, ["880RR", "985RF", "344YJ", "985PR"]);
-      this.renderProductList(filteredProducts);
-    
-  }
-  filterProducts(products, ids) {
-    return products.filter(product => ids.includes(product.Id));
-  }
-
-  renderProductList(products) {
-    renderListWithTemplate(productCardTemplate, this.listElement, products);
-  }
-
-//   renderProductList(products) {
-    
-//     const htmlStrings = products.map(productCardTemplate);
-//     this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-//   }
-}
