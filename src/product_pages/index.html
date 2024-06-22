@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="../css/style.css" />
 
-    <script src="../js/product.js" type="module"></script>
+
   </head>
 
   <body>
@@ -19,8 +19,9 @@
         <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
         <a href="../index.html"> Sleep<span class="highlight">Outside</span></a>
       </div>
-
       <div class="cart">
+        <!-- PB: Superscript for the cart counter in the header -->
+        <div class="cartItemCount" id="cartItemCount" cartItemCount></div>
         <a href="../cart/index.html">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <path
@@ -57,5 +58,7 @@
     <main class="divider"></main>
 
     <footer>&copy;NOT a real business</footer>
+    
   </body>
+  <script src="../js/product.js" type="module"></script>
 </html>

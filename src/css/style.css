@@ -110,6 +110,27 @@ button {
   fill: gray;
 }
 
+/*
+PB: Superscript Trello Card, W3
+    Add # of items in cart over the cart icon
+    https://dev.to/vinodsys/css-shopping-cart-icon-with-number-of-items-52a0
+& https://codepen.io/ehooks/pen/VgwVJR
+*/
+.cartItemCount[cartItemCount] {
+  content: attr(cartItemCount);
+  background: var(--primary-color);
+  padding: 0 5px;
+  right: 0px;
+  top: 15px;
+  position: absolute;
+  font-size: 60%;
+  text-align: center;
+  font-weight: bold;
+  color: var(--dark-grey);
+  border-radius: 70%;
+  line-height: 1.3em;
+}
+
 /* End cart icon styles */
 
 .mission {
