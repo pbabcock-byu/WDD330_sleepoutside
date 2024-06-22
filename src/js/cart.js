@@ -44,7 +44,7 @@ function cartItemTemplate(item) {
   <span></span>
   <span></span>
 
-    <button class="remove-from-cart" data-id="${item.Id}">Remove</button>
+    <button class="remove-from-cart" data-id="${item.Id}">Remo</button>
 
   
 </li>`;
