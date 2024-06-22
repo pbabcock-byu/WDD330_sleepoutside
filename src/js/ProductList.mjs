@@ -1,5 +1,10 @@
 // ProductList.mjs
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate,getLocalStorage } from "./utils.mjs";
+
+const cartItemCountElement = document.getElementById("cartItemCount");
+
+
+
 
 function productCardTemplate(product) {
   return `
@@ -26,19 +31,32 @@ export default class ProductListing {
         const products = await this.dataSource.getData();
         const filteredProducts = this.filterProducts(products, ["880RR", "985RF", "344YJ", "985PR"]);
         this.renderProductList(filteredProducts);
+         this.updateCartItemCount()
+        
+        
     }
 
     filterProducts(products, ids) {
-      return products.filter(product => ids.includes(product.Id));
-    }
-
+        return products.filter(product => ids.includes(product.Id));
+      }
+    
     renderProductList(products) {
       renderListWithTemplate(productCardTemplate, this.listElement, products);
     }
     // Stretch Activity Step 2
-    showFourTents(list) { 
-        return list.filter(function(product){ return product.Id != "989CG" && product.Id != "880RT"});
-    } 
+    
+    //showFourTents(list) { 
+     //   return list.filter(function(product){ return product.Id != "989CG" && product.Id != "880RT"});
+    //} 
+
+
+   updateCartItemCount() {
+       const cartItems = getLocalStorage("so-cart");
+      const cartItemCount = cartItems.length;
+      if (cartItemCountElement != null) {
+       cartItemCountElement.textContent = cartItemCount;
+      }
+     } 
 
   }
 
