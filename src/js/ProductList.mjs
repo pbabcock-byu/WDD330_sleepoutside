@@ -36,7 +36,6 @@ export default class ProductListing {
         
     }
 
-
     filterProducts(products, ids) {
         return products.filter(product => ids.includes(product.Id));
       }
