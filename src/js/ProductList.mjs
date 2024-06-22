@@ -1,14 +1,17 @@
 // ProductList.mjs
+import { renderListWithTemplate } from "./utils.mjs";
+
 function productCardTemplate(product) {
-    return `<li class="product-card">
-      <a href="product_pages/index.html?product=">
-        <img src="" alt="Image of ">
-        <h3 class="card__brand"></h3>
-        <h2 class="card__name"></h2>
-        <p class="product-card__price">$</p>
+  return `
+    <li class="product-card">
+      <a href="product_pages/index.html?product=${product.Id}">
+        <img src="${product.Image}" alt="Image of ${product.Name}">
+        <h3 class="card__brand">${product.Brand.Name}</h3>
+        <h2 class="card__name">${product.Name}</h2>
+        <p class="product-card__price">$${product.FinalPrice.toFixed(2)}</p>
       </a>
-    </li>`
-  }
+    </li>`;
+}
 
 export default class ProductListing {
     constructor(category, dataSource, listElement) {
@@ -20,14 +23,12 @@ export default class ProductListing {
     }
 
     async init() {
-      // our dataSource will return a Promise...so we can use await to resolve it.
-      const list = await this.dataSource.getData();
-      // render the list - to be completed
-      this.renderList(list);
+        const products = await this.dataSource.getData();
+        const filteredProducts = this.filterProducts(products, ["880RR", "985RF", "344YJ", "985PR"]);
+        this.renderProductList(filteredProducts);
     }
-    renderList(list){
-        //filter out bad products before sending to render
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
+    renderProductList(products) {
+      renderListWithTemplate(productCardTemplate, this.listElement, products);
     }
     // Stretch Activity Step 2
     showFourTents(list) { 
@@ -35,3 +36,4 @@ export default class ProductListing {
     } 
 
   }
+
