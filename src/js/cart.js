@@ -1,23 +1,33 @@
-import { getLocalStorage } from "./utils.mjs";
+/* eslint-disable no-console */
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 // PB: Superscript for the cart counter in the header
-const cartTotalItems = Object.keys(localStorage);
-const cartItemCount = cartTotalItems.length;
+//const cartTotalItems = Object.keys(localStorage);
+//const cartItemCount = cartTotalItems.length;
+
 const cartItemCountElement = document.getElementById("cartItemCount");
-if (cartItemCountElement != null) {
-  cartItemCountElement.textContent = cartItemCount;
+
+function updateCartItemCount() {
+  const cartItems = getLocalStorage("so-cart");
+  const cartItemCount = cartItems.length;
+  if (cartItemCountElement != null) {
+    cartItemCountElement.textContent = cartItemCount;
+  }
 }
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  //const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  //document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  document.querySelector(".product-list").innerHTML =
-    cartItemTemplate(cartItems);
+  if (!Array.isArray(cartItems)) {
+    //console.error("Cart items should be an array", cartItems);
+    //return;
+  }
+  const htmlItems = cartItems.map(cartItemTemplate).join("");
+  document.querySelector(".product-list").innerHTML = htmlItems;
+  addRemoveEventListeners();
 }
 
 function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
+  return `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -30,9 +40,29 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+  <button class="remove-from-cart" data-id="${item.Id}">Remove</button>
 </li>`;
 
-  return newItem;
+  // return newItem;
+}
+
+function addRemoveEventListeners() {
+  const removeButtons = document.querySelectorAll(".remove-from-cart");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const productId = event.target.dataset.id;
+      removeFromCart(productId);
+    });
+  });
+}
+
+function removeFromCart(productId) {
+  let cartItems = getLocalStorage("so-cart");
+  cartItems = cartItems.filter((item) => item.Id !== productId);
+  setLocalStorage("so-cart", cartItems);
+  renderCartContents();
+  updateCartItemCount();
 }
 
 renderCartContents();
+updateCartItemCount();
