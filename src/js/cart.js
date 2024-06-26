@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
-import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
-
+import {
+  getLocalStorage,
+  setLocalStorage,
+  loadHeaderFooter,
+} from "./utils.mjs";
 
 // PB: Superscript for the cart counter in the header
 //const cartTotalItems = Object.keys(localStorage);

@@ -1,6 +1,6 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
-import {loadHeaderFooter} from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 // PB: Superscript for the cart counter in the header
 const cartItems = Object.keys(localStorage);
