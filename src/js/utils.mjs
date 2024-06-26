@@ -41,3 +41,44 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  if (parentElement) {
+    parentElement.insertAdjacentHTML("afterbegin", template);
+    if (callback) {
+      callback(data);
+    }
+  } else {
+    console.error("Parent element is null. Cannot render template.");
+  }
+}
+
+export async function loadTemplate(path) {
+  const response = await fetch(path);
+  const template = await response.text();
+//const template = document.createElement("template");
+ // template.innerHTML = html;
+  return template;
+}
+
+
+
+
+export async function loadHeaderFooter() {
+  try {
+    const headerTemplate = await loadTemplate("../partials/header.html");
+    const footerTemplate = await loadTemplate("../partials/footer.html");
+    
+    const header = document.querySelector("#main-header");
+    const footer = document.querySelector("#main-footer");
+    
+    if (header && footer) {
+      renderWithTemplate(headerTemplate.innerHTML, header, {});
+      renderWithTemplate(footerTemplate.innerHTML, footer, {});
+    } else {
+      console.error("Header or footer element not found in the DOM.");
+    }
+  } catch (error) {
+    console.error("Error loading templates:", error);
+  }
+}

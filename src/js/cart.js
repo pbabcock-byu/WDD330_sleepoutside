@@ -7,6 +7,10 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 const cartItemCountElement = document.getElementById("cartItemCount");
 
+import { loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter()
+
 function updateCartItemCount() {
   const cartItems = getLocalStorage("so-cart");
   const cartItemCount = cartItems.length;
