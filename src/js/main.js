@@ -10,9 +10,9 @@ if (cartItemCountElement != null) {
   cartItemCountElement.textContent = cartItemCount;
 }
 
-const dataSource = new ProductData("tents");
-const element = document.querySelector(".product-list");
-const listing = new ProductList("tents", dataSource, element);
+//const dataSource = new ProductData("tents");
+//const element = document.querySelector(".product-list");
+//const listing = new ProductList("tents", dataSource, element);
 
 loadHeaderFooter();
-listing.init();
+//listing.init();
