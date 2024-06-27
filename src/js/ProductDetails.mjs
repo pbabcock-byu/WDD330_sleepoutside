@@ -5,7 +5,7 @@ function productDetailsTemplate(product) {
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>
@@ -34,6 +34,7 @@ export default class ProductDetails {
     this.product = {};
     this.dataSource = dataSource;
   }
+
   async init() {
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
@@ -45,7 +46,7 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
     // PB: Call function to update cart  item count when add item is clicked
-   // updateCartItemCount();
+    updateCartItemCount();
   }
 
   addToCart() {
@@ -60,5 +61,3 @@ export default class ProductDetails {
     element.insertAdjacentHTML("afterBegin", productDetailsTemplate(this.product));
   }
 }
-// PB: Call function so it runs on page load
-updateCartItemCount();

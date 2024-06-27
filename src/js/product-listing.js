@@ -1,20 +1,33 @@
 import ProductData from "./ProductData.mjs";
 //import ProductList from "./ProductList.mjs";
 //import productList from "./ProductList.mjs";
-import { getParams, loadHeaderFooter } from "./utils.mjs";
+import { getParams, loadHeaderFooter, getLocalStorage } from "./utils.mjs";
 import ProductList from "./ProductList.mjs";
 
 
+// document.addEventListener("DOMContentLoaded", async () => {
+//     await loadHeaderFooter();
+
+// // PB: Superscript for the cart counter in the header
+// const cartItems = Object.keys(localStorage);
+// const cartItemCount = cartItems.length;
+// const cartItemCountElement = document.getElementById("cartItemCount");
+// if (cartItemCountElement != null) {
+//   cartItemCountElement.textContent = cartItemCount;
+// }
+// });
+
 document.addEventListener("DOMContentLoaded", async () => {
-    await loadHeaderFooter();
+  await loadHeaderFooter();
 
 // PB: Superscript for the cart counter in the header
-const cartItems = Object.keys(localStorage);
-const cartItemCount = cartItems.length;
-const cartItemCountElement = document.getElementById("cartItemCount");
+const cartItems = getLocalStorage("so-cart");
+  const cartItemCount = cartItems.length;
+const cartItemCountElement = document.querySelector("#cartItemCount");
 if (cartItemCountElement != null) {
   cartItemCountElement.textContent = cartItemCount;
 }
+
 });
 
 
