@@ -167,6 +167,7 @@ PB: Superscript Trello Card, W3
 .product-card p {
   margin: 0.5em 0;
 }
+/*Style for categories*/
 .product-grid {
   display: grid;
   grid-auto-columns: 1fr;
@@ -248,15 +249,7 @@ PB: Superscript Trello Card, W3
     grid-template-columns: 150px auto 15%;
   }
 
-  .product-grid {
-    display: grid;
-    grid-template-columns: 1fr, 1fr;
-    grid-template-rows: auto;
-    gap: 55px;
-    list-style: none;
-    justify-content: center;
-    align-items: center;
-  }
+  
 }
 
 footer {
