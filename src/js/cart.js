@@ -9,15 +9,29 @@ import {
 //const cartTotalItems = Object.keys(localStorage);
 //const cartItemCount = cartTotalItems.length;
 
-const cartItemCountElement = document.getElementById("cartItemCount");
+//const cartItemCountElement = document.getElementById("cartItemCount");
 
-function updateCartItemCount() {
-  const cartItems = getLocalStorage("so-cart");
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadHeaderFooter();
+
+// PB: Superscript for the cart counter in the header
+const cartItems = getLocalStorage("so-cart");
   const cartItemCount = cartItems.length;
-  if (cartItemCountElement != null) {
-    cartItemCountElement.textContent = cartItemCount;
-  }
+const cartItemCountElement = document.querySelector("#cartItemCount");
+if (cartItemCountElement != null) {
+  cartItemCountElement.textContent = cartItemCount;
 }
+
+});
+
+
+//function updateCartItemCount() {
+  //const cartItems = getLocalStorage("so-cart");
+  //const cartItemCount = cartItems.length;
+  //if (cartItemCountElement != null) {
+   // cartItemCountElement.textContent = cartItemCount;
+ // }
+//}
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -71,8 +85,9 @@ function removeFromCart(productId) {
   cartItems = cartItems.filter((item) => item.Id !== productId);
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
-  updateCartItemCount();
+  //updateCartItemCount();
 }
-loadHeaderFooter();
+
+//loadHeaderFooter();
 renderCartContents();
-updateCartItemCount();
+//updateCartItemCount();
