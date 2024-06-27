@@ -5,13 +5,11 @@ import {
   loadHeaderFooter,
 } from "./utils.mjs";
 
-
 document.addEventListener("DOMContentLoaded", async () => {
   await loadHeaderFooter();
-// PB: Superscript for the cart counter in the header
-updateCartItemCount()
+  // PB: Superscript for the cart counter in the header
+  updateCartItemCount();
 });
-
 
 function updateCartItemCount() {
   const cartItems = getLocalStorage("so-cart");
@@ -22,13 +20,12 @@ function updateCartItemCount() {
   }
 }
 
-
 //function updateCartItemCount() {
-  //const cartItems = getLocalStorage("so-cart");
-  //const cartItemCount = cartItems.length;
-  //if (cartItemCountElement != null) {
-   // cartItemCountElement.textContent = cartItemCount;
- // }
+//const cartItems = getLocalStorage("so-cart");
+//const cartItemCount = cartItems.length;
+//if (cartItemCountElement != null) {
+// cartItemCountElement.textContent = cartItemCount;
+// }
 //}
 
 function renderCartContents() {
@@ -86,6 +83,4 @@ function removeFromCart(productId) {
   updateCartItemCount();
 }
 
-
 renderCartContents();
-

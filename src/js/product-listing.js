@@ -4,7 +4,6 @@ import ProductData from "./ProductData.mjs";
 import { getParams, loadHeaderFooter, getLocalStorage } from "./utils.mjs";
 import ProductList from "./ProductList.mjs";
 
-
 // document.addEventListener("DOMContentLoaded", async () => {
 //     await loadHeaderFooter();
 
@@ -20,18 +19,14 @@ import ProductList from "./ProductList.mjs";
 document.addEventListener("DOMContentLoaded", async () => {
   await loadHeaderFooter();
 
-// PB: Superscript for the cart counter in the header
-const cartItems = getLocalStorage("so-cart");
+  // PB: Superscript for the cart counter in the header
+  const cartItems = getLocalStorage("so-cart");
   const cartItemCount = cartItems.length;
-const cartItemCountElement = document.querySelector("#cartItemCount");
-if (cartItemCountElement != null) {
-  cartItemCountElement.textContent = cartItemCount;
-}
-
+  const cartItemCountElement = document.querySelector("#cartItemCount");
+  if (cartItemCountElement != null) {
+    cartItemCountElement.textContent = cartItemCount;
+  }
 });
-
-
-
 
 const category = getParams("category");
 const dataSource = new ProductData();
