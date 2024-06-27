@@ -1,7 +1,8 @@
-//import ProductData from "./ProductData.mjs";
+import ProductData from "./ProductData.mjs";
 //import ProductList from "./ProductList.mjs";
-import productList from "./ProductList.mjs";
+//import productList from "./ProductList.mjs";
 import { getParams, loadHeaderFooter } from "./utils.mjs";
+import ProductList from "./ProductList.mjs";
 
 // PB: Superscript for the cart counter in the header
 const cartItems = Object.keys(localStorage);
@@ -17,5 +18,10 @@ if (cartItemCountElement != null) {
 
 loadHeaderFooter();
 const category = getParams("category");
-productList(".product-list", category);
+//productList(".product-list", category);
 //listing.init();
+const dataSource = new ProductData();
+const element = document.querySelector(".product-list");
+const listing = new ProductList(category, dataSource, element);
+
+listing.init();

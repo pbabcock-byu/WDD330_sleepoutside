@@ -73,7 +73,7 @@ function removeFromCart(productId) {
   renderCartContents();
   updateCartItemCount();
 }
-
+loadHeaderFooter();
 renderCartContents();
 updateCartItemCount();
-loadHeaderFooter();
+

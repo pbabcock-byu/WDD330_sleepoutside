@@ -1,8 +1,9 @@
 // ProductList.mjs
 import { renderListWithTemplate,getLocalStorage } from "./utils.mjs";
+//import ProductData from "./ProductData.mjs";
 
 const cartItemCountElement = document.getElementById("cartItemCount");
-import{getProductsByCategory} from "./externalServices.mjs";
+//import{getProductsByCategory} from "./ProductData.mjs";
 
 
 
@@ -19,14 +20,55 @@ function productCardTemplate(product) {
     </li>`;
 } 
 
-export default async function productList(selector, category){
-           const selectedElement = document.querySelector(selector);
-           const products = await getProductsByCategory(category);
-           renderListWithTemplate(productCardTemplate, selectedElement, products);
-           document.querySelector(".title").innerHTML = category;
+export default class ProductListing {
+  constructor(category, dataSource, listElement) {
+      // We passed in this information to make our class as reusable as possible.
+      // Being able to define these things when we use the class will make it very flexible
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+    }
+    async init() {
+      // our dataSource will return a Promise...so we can use await to resolve it.
+      const products = await this.dataSource.getData(this.category);
+      // render the list
+      //this.renderList(list);
+      this.renderProductList(products)
+      //set the title to the current category
+      document.querySelector(".title").innerHTML = this.category;
+    }
+
+  renderProductList(products) {
+      renderListWithTemplate(productCardTemplate, this.listElement, products);
+      }
+  
+  updateCartItemCount() {
+         const cartItems = getLocalStorage("so-cart");
+        const cartItemCount = cartItems.length;
+        if (cartItemCountElement != null) {
+         cartItemCountElement.textContent = cartItemCount;
+        }
+       }
+  }
+
+// export default async function productListing(selector, category){
+//            const selectedElement = document.querySelector(selector);
+//           const products = await getProductsByCategory(category);
+//           renderListWithTemplate(productCardTemplate, selectedElement, products);
+//           document.querySelector(".title").innerHTML = category;
+
+// }           
+
+//async init() {
+  //      const products = await this.dataSource.getData(this.category);
+        
+    //     this.renderProductList(products);
+      //   this.updateCartItemCount()
+         
+   // }
 
 
-
+ 
 // async init() {
 //        this.updateCartItemCount()
 //     }
@@ -40,7 +82,7 @@ export default async function productList(selector, category){
 //       }
 //      } 
 
-}
+
 
 //export default class ProductListing {
   //  constructor(category, dataSource, listElement) {
@@ -61,24 +103,7 @@ export default async function productList(selector, category){
     //filterProducts(products, ids) {
        // return products.filter(product => ids.includes(product.Id));
      // }
-    //renderProductList(products) {
-   // renderListWithTemplate(productCardTemplate, this.listElement, products);
-    //}
-
-    // Stretch Activity Step 2
-    
-    //showFourTents(list) { 
-     //   return list.filter(function(product){ return product.Id != "989CG" && product.Id != "880RT"});
-    //} 
-
-
-  // updateCartItemCount() {
-    ///   const cartItems = getLocalStorage("so-cart");
-      //const cartItemCount = cartItems.length;
-      //if (cartItemCountElement != null) {
-      // cartItemCountElement.textContent = cartItemCount;
-     // }
-     //} 
+   
 
   //}
 
