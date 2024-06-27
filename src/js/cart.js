@@ -5,32 +5,27 @@ import {
   loadHeaderFooter,
 } from "./utils.mjs";
 
-// PB: Superscript for the cart counter in the header
-//const cartTotalItems = Object.keys(localStorage);
-//const cartItemCount = cartTotalItems.length;
-
-//const cartItemCountElement = document.getElementById("cartItemCount");
-
 document.addEventListener("DOMContentLoaded", async () => {
   await loadHeaderFooter();
-
-// PB: Superscript for the cart counter in the header
-const cartItems = getLocalStorage("so-cart");
-  const cartItemCount = cartItems.length;
-const cartItemCountElement = document.querySelector("#cartItemCount");
-if (cartItemCountElement != null) {
-  cartItemCountElement.textContent = cartItemCount;
-}
-
+  // PB: Superscript for the cart counter in the header
+  updateCartItemCount();
 });
 
+function updateCartItemCount() {
+  const cartItems = getLocalStorage("so-cart");
+  const cartItemCount = cartItems.length;
+  const cartItemCountElement = document.getElementById("cartItemCount");
+  if (cartItemCountElement != null) {
+    cartItemCountElement.textContent = cartItemCount;
+  }
+}
 
 //function updateCartItemCount() {
-  //const cartItems = getLocalStorage("so-cart");
-  //const cartItemCount = cartItems.length;
-  //if (cartItemCountElement != null) {
-   // cartItemCountElement.textContent = cartItemCount;
- // }
+//const cartItems = getLocalStorage("so-cart");
+//const cartItemCount = cartItems.length;
+//if (cartItemCountElement != null) {
+// cartItemCountElement.textContent = cartItemCount;
+// }
 //}
 
 function renderCartContents() {
@@ -49,7 +44,7 @@ function cartItemTemplate(item) {
   
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -85,9 +80,7 @@ function removeFromCart(productId) {
   cartItems = cartItems.filter((item) => item.Id !== productId);
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
-  //updateCartItemCount();
+  updateCartItemCount();
 }
 
-//loadHeaderFooter();
 renderCartContents();
-//updateCartItemCount();
