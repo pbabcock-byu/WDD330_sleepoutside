@@ -15,9 +15,12 @@ function updateCartItemCount() {
   const cartItems = getLocalStorage("so-cart");
   const cartItemCount = cartItems.length;
   const cartItemCountElement = document.getElementById("cartItemCount");
+  updateCartTotal()
   if (cartItemCountElement != null) {
     cartItemCountElement.textContent = cartItemCount;
+    
   }
+
 }
 
 //function updateCartItemCount() {
@@ -28,6 +31,63 @@ function updateCartItemCount() {
 // }
 //}
 
+
+// Function to sum up all 'FinalPrice' 
+function sumFinalPrices() {
+  let totalSum = 0;
+  let jsonString = localStorage.getItem('so-cart'); 
+
+  if (jsonString) {
+      let itemsArray = JSON.parse(jsonString);
+      itemsArray.forEach(item => {
+          if (item.FinalPrice) {
+              totalSum += item.FinalPrice;
+          }
+      });
+    
+  if (totalSum === 0) {
+    hideTotal();
+    } else{
+    showTotal(); 
+  }
+
+  }
+
+  return totalSum;
+}
+
+// Function to update the total in the DOM
+function updateCartTotal() {
+  // Get the total sum
+  let total = sumFinalPrices();
+
+  // Find the span element where the total should be displayed
+  let cartTotalElement = document.querySelector(".cartTotal");
+
+  if (cartTotalElement) {
+      cartTotalElement.innerText = "$ " + total.toFixed(2); // Format the total to 2 decimal places
+  }
+
+}
+
+// showTotal checks if the html class total has a hide class. If it does the hide class is removed and replaced with show to affect it's visibility on the cart index.html webpage.
+function showTotal() {
+  const totalClass = document.querySelector(".total");
+  if (totalClass.classList.contains("hide")) {
+    totalClass.classList.remove("hide");
+    totalClass.classList.add("show");
+  }
+}
+// hideTotal checks if the html class total has a show class. If it does the show class is removed and replaced with hide to affect it's visibility on the cart index.html webpage.
+function hideTotal() {
+  const totalClass = document.querySelector(".total");
+  if (totalClass.classList.contains("show")) {
+    totalClass.classList.remove("show");
+    totalClass.classList.add("hide");
+  }
+}
+
+
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   if (!Array.isArray(cartItems)) {
@@ -37,6 +97,7 @@ function renderCartContents() {
   const htmlItems = cartItems.map(cartItemTemplate).join("");
   document.querySelector(".product-list").innerHTML = htmlItems;
   addRemoveEventListeners();
+  
 }
 
 function cartItemTemplate(item) {
@@ -81,6 +142,6 @@ function removeFromCart(productId) {
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
   updateCartItemCount();
-}
+  }
 
 renderCartContents();
