@@ -239,7 +239,17 @@ PB: Superscript Trello Card, W3
   grid-column: 3;
 }
 
+/* Style to control cart total*/
 
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+  text-align: Left;
+  padding: 1rem;
+} 
 
 
 @media screen and (min-width: 500px) {
