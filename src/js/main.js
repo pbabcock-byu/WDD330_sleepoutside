@@ -1,4 +1,3 @@
-
 import { loadHeaderFooter, getLocalStorage } from "./utils.mjs";
 
 // document.addEventListener("DOMContentLoaded", async () => {

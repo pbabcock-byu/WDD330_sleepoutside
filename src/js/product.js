@@ -7,7 +7,6 @@ import ProductDetails from "./ProductDetails.mjs";
 
 loadHeaderFooter();
 
-
 // an instance of the ProductData class is then created.
 const dataSource = new ExternalServices("tents");
 

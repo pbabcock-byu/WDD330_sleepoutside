@@ -110,7 +110,7 @@ button {
   fill: gray;
 }
 /*Title for Top Products*/
-.title{
+.title {
   text-transform: capitalize;
 }
 
@@ -275,23 +275,20 @@ PB: Superscript Trello Card, W3
   display: block;
   text-align: Left;
   padding: 1rem;
-} 
-#checkout{
+}
+#checkout {
   padding: 1rem;
-  
 }
 
-.cartCheckoutButton{
-  background-color: var(--secondary-color) ;
+.cartCheckoutButton {
+  background-color: var(--secondary-color);
   color: white;
   padding: 10px;
   text-decoration: none;
 }
-.cartCheckoutButton:hover{
+.cartCheckoutButton:hover {
   background-color: blue;
-  
 }
-
 
 @media screen and (min-width: 500px) {
   body {
@@ -305,8 +302,6 @@ PB: Superscript Trello Card, W3
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
-  
-  
 }
 
 footer {
