@@ -22,6 +22,7 @@ function productDetailsTemplate(product) {
 export function updateCartItemCount() {
   const cartItems = getLocalStorage("so-cart");
   const cartItemCount = cartItems.length;
+  //const cartItemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
   const cartItemCountElement = document.getElementById("cartItemCount");
   if (cartItemCountElement != null) {
     cartItemCountElement.textContent = cartItemCount;
@@ -51,7 +52,14 @@ export default class ProductDetails {
 
   addToCart() {
     let cartItems = getLocalStorage("so-cart");
-    cartItems.push(this.product);
+    const existingItem = cartItems.findIndex(item => item.Id === this.product.Id)
+    if (existingItem !== -1) {
+      cartItems[existingItem].quantity += 1;
+    }else{
+      this.product.quantity = 1;
+      cartItems.push(this.product);
+    }
+    
     setLocalStorage("so-cart", cartItems);
     updateCartItemCount();
   }
