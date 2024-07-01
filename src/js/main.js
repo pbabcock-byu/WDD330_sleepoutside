@@ -1,5 +1,4 @@
-//import ProductData from "./ProductData.mjs";
-//import ProductList from "./ProductList.mjs";
+
 import { loadHeaderFooter, getLocalStorage } from "./utils.mjs";
 
 // document.addEventListener("DOMContentLoaded", async () => {

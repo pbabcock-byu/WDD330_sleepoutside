@@ -281,6 +281,18 @@ PB: Superscript Trello Card, W3
   
 }
 
+.cartCheckoutButton{
+  background-color: var(--secondary-color) ;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+.cartCheckoutButton:hover{
+  background-color: blue;
+  
+}
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
