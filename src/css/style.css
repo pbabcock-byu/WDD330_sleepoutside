@@ -114,6 +114,32 @@ button {
   text-transform: capitalize;
 }
 
+/* checkout styles */
+.checkout-form {
+  padding: 0.5em;
+}
+.checkout-form label {
+  display: block;
+}
+.checkout-form input {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.checkout-summary > ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-summary input {
+  width: 25%;
+  font-size: 1em;
+}
+
 /*
 PB: Superscript Trello Card, W3
     Add # of items in cart over the cart icon
@@ -250,7 +276,10 @@ PB: Superscript Trello Card, W3
   text-align: Left;
   padding: 1rem;
 } 
-
+#checkout{
+  padding: 1rem;
+  
+}
 
 @media screen and (min-width: 500px) {
   body {

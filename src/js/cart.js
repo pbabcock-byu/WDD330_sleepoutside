@@ -35,7 +35,7 @@ function updateCartItemCount() {
 // Function to sum up all 'FinalPrice' 
 function sumFinalPrices() {
   let totalSum = 0;
-  let jsonString = localStorage.getItem('so-cart'); 
+  let jsonString = localStorage.getItem("so-cart"); //changing to double quote
 
   if (jsonString) {
       let itemsArray = JSON.parse(jsonString);
