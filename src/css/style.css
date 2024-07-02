@@ -280,6 +280,19 @@ PB: Superscript Trello Card, W3
   background-color: red;
 }
 
+/* Style to control cart total*/
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+  text-align: Left;
+  padding: 1rem;
+} 
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
