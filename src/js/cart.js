@@ -16,33 +16,29 @@ function updateCartItemCount() {
   const cartItems = getLocalStorage("so-cart");
   const cartItemCount = cartItems.length;
   const cartItemCountElement = document.getElementById("cartItemCount");
-  updateCartTotal()
+  updateCartTotal();
   if (cartItemCountElement != null) {
     cartItemCountElement.textContent = cartItemCount;
-    
   }
-
 }
 
-// Function to sum up all 'FinalPrice' 
 function sumFinalPrices() {
   let totalSum = 0;
-  let jsonString = localStorage.getItem('so-cart'); 
+  let jsonString = localStorage.getItem("so-cart"); //changing to double quote
 
   if (jsonString) {
-      let itemsArray = JSON.parse(jsonString);
-      itemsArray.forEach(item => {
-          if (item.FinalPrice) {
-              totalSum += item.FinalPrice;
-          }
-      });
-    
-  if (totalSum === 0) {
-    hideTotal();
-    } else{
-    showTotal(); 
-  }
+    let itemsArray = JSON.parse(jsonString);
+    itemsArray.forEach((item) => {
+      if (item.FinalPrice) {
+        totalSum += item.FinalPrice;
+      }
+    });
 
+    if (totalSum === 0) {
+      hideTotal();
+    } else {
+      showTotal();
+    }
   }
 
   return totalSum;
@@ -57,9 +53,8 @@ function updateCartTotal() {
   let cartTotalElement = document.querySelector(".cartTotal");
 
   if (cartTotalElement) {
-      cartTotalElement.innerText = "$ " + total.toFixed(2); // Format the total to 2 decimal places
+    cartTotalElement.innerText = "$ " + total.toFixed(2); // Format the total to 2 decimal places
   }
-
 }
 
 // showTotal checks if the html class total has a hide class. If it does the hide class is removed and replaced with show to affect it's visibility on the cart index.html webpage.
@@ -79,7 +74,6 @@ function hideTotal() {
   }
 }
 
-
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   if (!Array.isArray(cartItems)) {
@@ -92,7 +86,7 @@ function renderCartContents() {
   
   addQuantityEventListeners();
   
-}
+  }
 
 function cartItemTemplate(item) {
   return `<li class = "cart-card divider">
@@ -142,7 +136,7 @@ function removeFromCart(productId) {
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
   updateCartItemCount();
-  }
+}
 
 function addQuantityEventListeners() {
   const increaseButtons = document.querySelectorAll(".cart-card_addItem");

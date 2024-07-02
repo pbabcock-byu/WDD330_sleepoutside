@@ -1,9 +1,6 @@
 // ProductList.mjs
 import { renderListWithTemplate,getLocalStorage } from "./utils.mjs";
-//import ProductData from "./ProductData.mjs";
-
 const cartItemCountElement = document.getElementById("cartItemCount");
-//import{getProductsByCategory} from "./ProductData.mjs";
 
 
 
