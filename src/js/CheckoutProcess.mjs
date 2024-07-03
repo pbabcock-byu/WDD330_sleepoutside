@@ -46,7 +46,7 @@
 //  }
 // 
 
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -132,11 +132,20 @@ export default class CheckoutProcess {
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
     console.log(json);
+
     try {
       const res = await services.checkout(json);
       console.log(res);
+
+      // Clear the cart contents in localStorage
+      localStorage.removeItem(this.key);
+
+      // Navigate to the success page
+      window.location.href = "success.html";
     } catch (err) {
-      console.log(err);
+      console.error("Checkout failed:", err);
+      // Use alertMessage to show error message
+      alertMessage("Error during checkout: " + JSON.stringify(err.message));
     }
   }
 }
