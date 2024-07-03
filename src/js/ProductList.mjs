@@ -1,5 +1,6 @@
 // ProductList.mjs
 import { renderListWithTemplate,getLocalStorage } from "./utils.mjs";
+
 const cartItemCountElement = document.getElementById("cartItemCount");
 
 
@@ -24,13 +25,15 @@ export default class ProductListing {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.filteredProducts = [];
     }
     async init() {
       // our dataSource will return a Promise...so we can use await to resolve it.
       const products = await this.dataSource.getData(this.category);
       // render the list
       //this.renderList(list);
-      this.renderProductList(products)
+      this.filteredProducts = products;
+      this.renderProductList(this.filteredProducts)
       //set the title to the current category
       document.querySelector(".title").innerHTML = this.category;
     }
@@ -46,6 +49,16 @@ export default class ProductListing {
          cartItemCountElement.textContent = cartItemCount;
         }
        }
+
+       sortProducts(criteria) {
+        let sortedProducts = [...this.filteredProducts];
+        if (criteria === "name") {
+          sortedProducts.sort((a, b) => a.Name.localeCompare(b.Name));
+        } else if (criteria === "price") {
+          sortedProducts.sort((a, b) => a.FinalPrice - b.FinalPrice);
+        }
+        this.renderProductList(sortedProducts);
+      }
   }
 
 // export default async function productListing(selector, category){

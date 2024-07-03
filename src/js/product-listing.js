@@ -1,6 +1,5 @@
 import ExternalServices from "./ExternalServices.mjs";
-//import ProductList from "./ProductList.mjs";
-//import productList from "./ProductList.mjs";
+
 import { getParams, loadHeaderFooter, getLocalStorage } from "./utils.mjs";
 import ProductList from "./ProductList.mjs";
 
@@ -14,7 +13,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (cartItemCountElement != null) {
     cartItemCountElement.textContent = cartItemCount;
   }
-});
+
+
+  const sortSelect = document.querySelector("#sortSelect");
+  sortSelect.addEventListener("change", () => {
+    const sortValue = sortSelect.value;
+    if (sortValue) {
+      listing.sortProducts(sortValue);
+    } else {
+      listing.renderProductList(listing.filteredProducts);  // Render the products unsorted
+    }
+  });
 
 const category = getParams("category");
 const dataSource = new ExternalServices();
@@ -22,3 +31,4 @@ const element = document.querySelector(".product-list");
 const listing = new ProductList(category, dataSource, element);
 
 listing.init();
+});
