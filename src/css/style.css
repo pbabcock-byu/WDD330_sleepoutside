@@ -142,6 +142,48 @@ button:hover {
   width: 25%;
   font-size: 1em;
 }
+/*Product-listing*/
+.productListHeader {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#sortSelect {
+  font-size: 15px;
+}
+
+/* styles.css */
+.alert {
+  background-color: #4caf50; /* Green */
+  color: white;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  outline: none; /* Remove default focus outline */
+}
+
+.alert:focus {
+  outline: 2px solid #fff; /* Add a custom focus outline */
+}
+
+.alert .close-alert {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 15px;
+  line-height: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alert .close-alert:hover {
+  background-color: red;
+  color: white;
+}
 
 /*
 PB: Superscript Trello Card, W3
