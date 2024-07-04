@@ -75,7 +75,7 @@ export function alertMessage(message, scroll = true, duration = 3000) {
   alert.classList.add("alert");
   // Set the contents
   alert.innerHTML = `
-    <span>${message}</span>
+    <span >${message}</span>
     <button class="close-alert">X</button>
   `;
 

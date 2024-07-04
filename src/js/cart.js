@@ -83,10 +83,9 @@ function renderCartContents() {
   const htmlItems = cartItems.map(cartItemTemplate).join("");
   document.querySelector(".product-list").innerHTML = htmlItems;
   addRemoveEventListeners();
-  
+
   addQuantityEventListeners();
-  
-  }
+}
 
 function cartItemTemplate(item) {
   return `<li class = "cart-card divider">
@@ -174,7 +173,7 @@ function updateItemQuantity(productId, change) {
   if (itemIndex !== -1) {
     cartItems[itemIndex].quantity += change;
     //const itemsubtotal =
-     // cartItems[itemIndex].quantity * cartItems[itemIndex].FinalPrice;
+    // cartItems[itemIndex].quantity * cartItems[itemIndex].FinalPrice;
     //cartItems[itemIndex].subTotalItem = itemsubtotal;
     if (cartItems[itemIndex].quantity <= 0) {
       cartItems = cartItems.filter((item) => item.Id !== productId);

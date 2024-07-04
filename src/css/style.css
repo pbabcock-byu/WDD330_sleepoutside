@@ -143,16 +143,15 @@ button:hover {
   font-size: 1em;
 }
 /*Product-listing*/
-.productListHeader{
+.productListHeader {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
-#sortSelect{
-  
+#sortSelect {
   font-size: 15px;
 }
+
 /* styles.css */
 .alert {
   background-color: #4caf50; /* Green */
@@ -182,7 +181,7 @@ button:hover {
 }
 
 .alert .close-alert:hover {
-  background-color:red;
+  background-color: red;
   color: white;
 }
 

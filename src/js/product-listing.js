@@ -14,21 +14,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     cartItemCountElement.textContent = cartItemCount;
   }
 
-
   const sortSelect = document.querySelector("#sortSelect");
   sortSelect.addEventListener("change", () => {
     const sortValue = sortSelect.value;
     if (sortValue) {
       listing.sortProducts(sortValue);
     } else {
-      listing.renderProductList(listing.filteredProducts);  // Render the products unsorted
+      listing.renderProductList(listing.filteredProducts); // Render the products unsorted
     }
   });
 
-const category = getParams("category");
-const dataSource = new ExternalServices();
-const element = document.querySelector(".product-list");
-const listing = new ProductList(category, dataSource, element);
+  const category = getParams("category");
+  const dataSource = new ExternalServices();
+  const element = document.querySelector(".product-list");
+  const listing = new ProductList(category, dataSource, element);
 
-listing.init();
+  listing.init();
 });
