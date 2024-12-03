@@ -1,18 +1,25 @@
-// PB: Superscript for the cart counter in the header
-const cartItems = Object.keys(localStorage);
-const cartItemCount = cartItems.length;
-const cartItemCountElement = document.getElementById("cartItemCount");
-if (cartItemCountElement != null) {
-  cartItemCountElement.textContent = cartItemCount;
-}
+import { loadHeaderFooter, getLocalStorage } from "./utils.mjs";
 
-import ProductData from "./ProductData.mjs";
-const dataSource = new ProductData("tents");
+// document.addEventListener("DOMContentLoaded", async () => {
+//   await loadHeaderFooter();
 
-import ProductList from "./ProductList.mjs";
+// // PB: Superscript for the cart counter in the header
+// const cartItems = Object.keys(localStorage);
+// const cartItemCount = cartItems.length;
+// const cartItemCountElement = document.querySelector("#cartItemCount");
+// if (cartItemCountElement != null) {
+//   cartItemCountElement.textContent = cartItemCount;
+// }
 
+// });
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadHeaderFooter();
 
-const element = document.querySelector(".product-list");
-const listing = new ProductList("Tents", dataSource, element);
-
-listing.init();
+  // PB: Superscript for the cart counter in the header
+  const cartItems = getLocalStorage("so-cart");
+  const cartItemCount = cartItems.length;
+  const cartItemCountElement = document.querySelector("#cartItemCount");
+  if (cartItemCountElement != null) {
+    cartItemCountElement.textContent = cartItemCount;
+  }
+});

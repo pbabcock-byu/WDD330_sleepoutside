@@ -91,6 +91,9 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+button:hover {
+  background-color: rgb(39, 39, 204);
+}
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -108,6 +111,36 @@ button {
 }
 .cart:hover svg {
   fill: gray;
+}
+/*Title for Top Products*/
+.title {
+  text-transform: capitalize;
+}
+
+/* checkout styles */
+.checkout-form {
+  padding: 0.5em;
+}
+.checkout-form label {
+  display: block;
+}
+.checkout-form input {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.checkout-summary > ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-summary input {
+  width: 25%;
+  font-size: 1em;
 }
 
 /*
@@ -167,6 +200,18 @@ PB: Superscript Trello Card, W3
 .product-card p {
   margin: 0.5em 0;
 }
+/*Style for categories*/
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 55px;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+.product-grid li {
+  text-align: center;
+}
 
 .card__brand {
   font-size: var(--small-font);
@@ -190,7 +235,7 @@ PB: Superscript Trello Card, W3
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% auto 15%;
+  grid-template-columns: 25% auto 15% 15%;
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
@@ -213,14 +258,77 @@ PB: Superscript Trello Card, W3
   grid-column: 2;
 }
 
+.cart-card__quantity_container {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; /* Evenly spaces items horizontally */
+  padding: 5px; /* Optional: Adds some padding for better spacing */
+  border: 1px solid var(--light-grey);
+}
 .cart-card__quantity {
-  grid-row: 1;
-  grid-column: 3;
+  grid-row: 1/2;
+  grid-column: 3/4;
+  width: 40%;
+  text-align: center;
+  padding: 5px;
+}
+.cart-card_addItem,
+.cart-card_reduceItem {
+  padding: 5px;
+  width: 40%;
+  color: rgb(14, 13, 13);
+  text-align: center;
+}
+.cart-card_addItem:hover,
+.cart-card_reduceItem:hover {
+  background-color: blue;
+  color: white;
 }
 
 .cart-card__price {
-  grid-row: 2;
-  grid-column: 3;
+  grid-row: 2/3;
+  grid-column: 3/4;
+}
+.remove-from-cart {
+  grid-row: 1/2;
+  grid-column: 4/5;
+  color: red;
+  border: 1px solid red;
+  padding: 4px;
+  margin-left: 25px;
+  width: 2.5rem;
+  text-align: center;
+}
+.remove-from-cart:hover {
+  color: white;
+  background-color: red;
+}
+
+/* Style to control cart total*/
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+  text-align: Left;
+  padding: 1rem;
+}
+#checkout {
+  padding: 1rem;
+}
+
+.cartCheckoutButton {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+.cartCheckoutButton:hover {
+  background-color: blue;
 }
 
 @media screen and (min-width: 500px) {
@@ -233,7 +341,7 @@ PB: Superscript Trello Card, W3
   }
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    grid-template-columns: 150px auto 15% 15%;
   }
 }
 
